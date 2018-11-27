@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Recuperação de Senha</title>
+  <link href="https://fonts.googleapis.com/css?family=Mukta+Malar" rel="stylesheet">
+  <style>
+    .pagina {
+      margin: -8px;
+      background-color: rgb(245, 245, 245);
+      padding: 10px 10px 180px 10px;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 48px
+    }
+
+    .Template {
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .corpo {
+      padding: 40px 0px 40px 0px;
+      margin: auto;
+      margin-top: 20px;
+      box-shadow: 0px 0px 2px #888;
+      border-radius: 4px;
+      font-family: 'Mukta Malar', sans-serif;
+      max-width: 600px;
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+      border-bottom: solid 3px #034772;
+    }
+
+    .div-header {
+      text-align: center;
+      padding: 15px 15px;
+      background-color: #034772;
+      color: white;
+      font-weight: 300;
+      margin-top: 15px;
+    }
+
+    .div-corpo {
+      padding: 10px 40px;
+      text-align: center;
+      font-weight: 100;
+    }
+
+    .botao-Template {
+      border: solid 1px #0984ce;
+      padding: 16px 28px;
+      font-size: 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0984ce !important;
+    }
+
+    .botao-Template:hover {
+      opacity: .8;
+    }
+
+    @media (max-width: 480px) {
+      .div-corpo {
+        padding: 10px 25px;
+      }
+
+      .div-header {
+        padding: 5px 15px;
+        font-weight: 100;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="pagina">
+    <div class="corpo">
+      <div class="logo">
+        <img src="{{host}}/Template-icon.png" alt="Logo do aplicativo Template" />
+        <h1 class="Template">Template!</h1>
+      </div>
+      <div class="div-header">
+        <h2>Recuperação de Senha</h2>
+      </div>
+      <div class="div-corpo">
+        <h2>Olá, {{nome}}</h2><br />
+        <h2 style="font-weight: 100">Recebemos uma solicitação para redefinir sua senha do <b>Template!</b></h2>
+        <br />
+        <h3 style="font-weight: 100">Clique no link abaixo para redefinir sua senha:</h3>
+        <br />
+        <br />
+        <a class="botao-Template" href="{{host}}/recuperar-senha/{{token}}" target="_blank">
+          Alterar Senha
+        </a>
+        <br /><br /><br />
+        <p>Um abraço,</p>
+        <p style="margin-top: -15px">Equipe Template! 😉</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

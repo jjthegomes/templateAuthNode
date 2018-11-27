@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Comunicado</title>
+  <link href="https://fonts.googleapis.com/css?family=Mukta+Malar" rel="stylesheet">
+  <style>
+    .pagina {
+      margin: -8px;
+      background-color: rgb(245, 245, 245);
+      padding: 10px 10px 180px 10px;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 48px
+    }
+
+    .Template {
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .corpo {
+      padding: 40px 0px 40px 0px;
+      margin: auto;
+      margin-top: 20px;
+      box-shadow: 0px 0px 2px #888;
+      border-radius: 4px;
+      font-family: 'Mukta Malar', sans-serif;
+      max-width: 600px;
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+      border-bottom: solid 3px #034772;
+    }
+
+    .div-header {
+      text-align: center;
+      padding: 15px 15px;
+      background-color: #034772;
+      /*      background-color: #0984ce; */
+      color: white;
+      font-weight: 300;
+      margin-top: 15px;
+    }
+
+    .div-corpo {
+      padding: 10px 45px;
+      text-align: center;
+      font-weight: 100;
+    }
+
+    .botao-Template {
+      border: solid 1px #0984ce;
+      padding: 16px 28px;
+      font-size: 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0984ce !important;
+    }
+
+    .botao-Template:hover {
+      opacity: .8;
+    }
+
+    a:visited {
+      color: #034772;
+    }
+
+    @media (max-width: 480px) {
+      .div-corpo {
+        padding: 10px 30px;
+      }
+
+      .div-header {
+        padding: 5px 15px;
+        font-weight: 100;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pagina">
+    <div class="corpo">
+      <div class="logo">
+        <img src="{{host}}/Template-icon.png" alt="Logo do aplicativo Template" />
+        <h1 class="Template">Template!</h1>
+      </div>
+      <div class="div-header">
+        <h2>{{localEvento}}</h2>
+        <h2 style="font-weight: 100">{{nomeEvento}}</h2>
+      </div>
+      <div class="div-corpo">
+        <h2>Olá, {{nome}}</h2><br />
+        <h2 style="font-weight: 100">Essas são as informações do pôster:</h2>
+        <br />
+        <h2>{{tituloPoster}}</h2>
+        <h3>{{areaPoster}}</h3>
+        <br />
+        <h3 style="font-weight: 100">O número do pôster deve ser colocado na área destinada no <b>canto superior
+            direito</b> do pôster.</h3>
+        <div>
+          <h2>Número do pôster:</h2>
+          <h1 style="font-size: 40px">{{numeroPoster}}</h1>
+        </div>
+        <h3 style="font-weight: 100">O QR Code deve ser colocado na área destinada no <b>canto inferior direito</b> do
+          pôster.</h3>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{idQrcode}}&download=1" alt="qrcode"
+          target="_blank" width="150px" />
+        <br /><br /><br />
+        <a class="botao-Template" href="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data={{idQrcode}}&download=1"
+          target="_blank">
+          Baixar QR Code
+        </a>
+        <br /><br />
+        <p>Caso tenha mais de um pôster, recomendamos que ao baixar o qrcode você renomeie o arquivo para o título do
+          pôster, para não haver confunsão na hora de anexar.</p><br />
+        <hr /><br />
+        <h2 style="font-weight: 100">Você também tem acesso a essas informações acessando o site do <b>Template!</b></h2>
+        <br />
+        <h3 style="font-weight: 100">Basta acessar sua conta com seu <b>email</b> e <b>senha</b></h3>
+        <br />
+        <h2 style="font-weight: 100"><a href="{{host}}" class="botao-Template">Template.app4all.com.br</a></h2>
+        <br />
+        <br />
+        <br />
+        <p>Um abraço,</p>
+        <p style="margin-top: -15px">Equipe Template! 😉</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

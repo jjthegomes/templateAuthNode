@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Convite</title>
+  <link href="https://fonts.googleapis.com/css?family=Mukta+Malar" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+    crossorigin="anonymous">
+
+  <style>
+    .pagina {
+      margin: -8px;
+      background-color: rgb(245, 245, 245);
+      padding: 10px 10px 180px 10px;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 48px
+    }
+
+    .Template {
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .corpo {
+      padding: 40px 0px 40px 0px;
+      margin: auto;
+      margin-top: 20px;
+      box-shadow: 0px 0px 2px #888;
+      border-radius: 4px;
+      font-family: 'Mukta Malar', sans-serif;
+      max-width: 600px;
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+      border-bottom: solid 3px #034772;
+    }
+
+    .div-header {
+      text-align: center;
+      padding: 15px 15px;
+      background-color: #034772;
+      /*      background-color: #0984ce; */
+      color: white;
+      font-weight: 300;
+      margin-top: 15px;
+    }
+
+    .div-corpo {
+      padding: 10px 40px;
+      text-align: center;
+      font-weight: 100;
+    }
+
+    .botao-Template {
+      border: solid 1px #0984ce;
+      padding: 16px 28px;
+      font-size: 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0984ce !important;
+    }
+
+    .botao-Template:hover {
+      opacity: .8;
+    }
+
+    @media (max-width: 480px) {
+      .div-corpo {
+        padding: 10px 25px;
+      }
+
+      .div-header {
+        padding: 5px 15px;
+        font-weight: 100;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="corpo">
+    <div class="logo">
+      <img src="{{host}}/Template-icon.png" alt="Logo do aplicativo Template" />
+      <h1 class="Template">Template</h1>
+    </div>
+    <div class="div-header">
+      <h2>Convite de avaliador!</h2>
+    </div>
+    <div class="div-corpo">
+      <h2>Olá, {{nome}}</h2>
+      <h3 style="font-weight: 100">Você recebeu um convite para participar como <b>avaliador</b> do evento:</h3>
+      <br />
+      <h3><i class="far fa-calendar-alt"></i>&nbsp; {{eventoNome}}</h3>
+      <br />
+      <h3 style="font-weight: 100">Para confirmar sua participação e começar a avaliar os pôsteres desse evento, basta
+        clicar no botão abaixo:</h3>
+      <br /><br />
+      <a class="botao-Template" href="{{host}}/confirmarConvite/evento/{{idConvite}}" target="_blank">
+        <i class="fas fa-check"></i>&nbsp; Confirmar Participação
+      </a>
+      <br /><br /><br />
+      <p>Um abraço,</p>
+      <p style="margin-top: -15px">Equipe Template! 😉</p>
+    </div>
+  </div>
+</body>
+
+</html>
