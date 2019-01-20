@@ -19,11 +19,11 @@ app.use(cors({
 
 require('./app/controllers/index')(app);
 
-fs.stat(path.join(__dirname, '../../Template4All/build/index.html'), function (err, stat) {
+fs.stat(path.join(__dirname, '../../Template/build/index.html'), function (err, stat) {
   if (err == null) {
-    app.use(express.static(path.join(__dirname, '../../Template4All/build')));
+    app.use(express.static(path.join(__dirname, '../../Template/build')));
     app.get('/*', function (req, res) {
-      res.sendFile(path.join(__dirname, '../../Template4All/build', 'index.html'));
+      res.sendFile(path.join(__dirname, '../../Template/build', 'index.html'));
     });
   } else if (err.code == 'ENOENT') {
     app.get("/*", (req, res) => {
