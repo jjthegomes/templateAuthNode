@@ -38,9 +38,6 @@ export const getHora = (data) =>
 export const getMinutos = (data) =>
   (getData(data).getMinutes().toString().length === 1) ? "0" + getData(data).getMinutes() : getData(data).getMinutes();
 
-// export const getDataFormatada = (data) =>
-//   getDiaMes(data) + " de " + getMes(data) + " de " + getAno(data) + " às " + getHora(data) + ":" + getMinutos(data);
-
 //aaaa-mm-dd
 export const getDataFormatada = (data) => {
   data = new Date(data);

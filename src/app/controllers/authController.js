@@ -3,8 +3,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import mailer from '../../modules/mailer';
-import authconfig from '../../config/auth.json';
 import User from '../models/usuario';
+const authconfig = { secret: process.env.AUTH_SECRET };
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ function generateToken(params = {}) {
 
 function generateTokenWeb(params = {}) {
   return jwt.sign(params, authconfig.secret, {
-    expiresIn: 1800
+    expiresIn: 3600 * 5 // segundos
   });
 }
 
@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
   const { email } = req.body;
   try {
     if (await User.findOne({ email }))
-      return res.status(400).send({ error: "Atenção: Este e-mail já está cadastrado, para obter acesso ao sistema, clique em recuperar senha e siga os procedimentos enviados para sua caixa de entrada. Verifique a caixa de SPAM." })
+      return res.status(400).send({ error: "Este e-mail já está cadastrado, para obter acesso ao sistema, clique em recuperar senha e siga os procedimentos enviados para sua caixa de entrada. Verifique a caixa de SPAM." })
 
     const user = await User.create(req.body);
 
@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
 
     mailer.sendMail({
       to: email,
-      from: `"Template!" <${process.env.EMAIL_USER}>`,
+      from: `"Template" <${process.env.EMAIL_USER}>`,
       subject: "Confirmação de Cadastro",
       template: 'auth/confirmacao_cadastro',
       context: { nome: user.nome, token, host: process.env.HOST },
@@ -74,7 +74,7 @@ router.post('/authenticate', async (req, res) => {
     if (!user)
       return res.status(400).send({ error: 'E-mail ou senha inválidos' });
 
-    if (!await bcrypt.compare(senha, user.senha) && senha !== "#Template123")
+    if (!await bcrypt.compare(senha, user.senha))
       return res.status(400).send({ error: 'E-mail ou senha inválidos' })
   } catch (error) {
     console.log(error)
@@ -112,15 +112,13 @@ router.post('/forgot_password', async (req, res) => {
 
     mailer.sendMail({
       to: email,
-      from: `"Template!" <${process.env.EMAIL_USER}>`,
+      from: `"Template" <${process.env.EMAIL_USER}>`,
       subject: "Recuperação de Senha",
       template: 'auth/recuperacao_senha',
       context: { nome: user.nome, token, host: process.env.HOST },
     }, (err) => {
       if (err)
-        console.log(err)
-      // return res.status(400).send({ error: 'Não foi possível enviar email de recuperação!' });
-
+        return res.status(400).send({ error: 'Não foi possível enviar email  de recuperação de senha!' });
     })
 
     return res.sendStatus(200);

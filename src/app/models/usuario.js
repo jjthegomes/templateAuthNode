@@ -17,10 +17,6 @@ const UsuarioSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  nivel: {
-    type: String,
-    required: false,
-  },
   genero: {
     type: String,
     required: false
@@ -65,7 +61,7 @@ const UsuarioSchema = new mongoose.Schema({
     email: {
       type: String,
       required: false,
-      unique: true,
+      unique: false,
       lowercase: true,
     },
     tokenConfirmacao: {

@@ -19,24 +19,21 @@ app.use(cors({
 
 require('./app/controllers/index')(app);
 
-fs.stat(path.join(__dirname, '../../Template/build/index.html'), function (err, stat) {
+const BUILD_PATH = process.env.BUILD_PATH || '../build'
+
+fs.stat(path.join(__dirname, `${BUILD_PATH}/index.html`), function (err, stat) {
   if (err == null) {
-    app.use(express.static(path.join(__dirname, '../../Template/build')));
+    app.use(express.static(path.join(__dirname, BUILD_PATH)));
     app.get('/*', function (req, res) {
-      res.sendFile(path.join(__dirname, '../../Template/build', 'index.html'));
-    });
-  } else if (err.code == 'ENOENT') {
-    app.get("/*", (req, res) => {
-      res.sendFile(path.join(__dirname, "index.html"));
+      res.sendFile(path.join(__dirname, BUILD_PATH, 'index.html'));
     });
   } else {
     app.get("/*", (req, res) => {
       res.sendFile(path.join(__dirname, "index.html"));
     });
-    console.log(err.code);
   }
 });
 
-app.listen(3001, function () {
-  console.log('API listening on port 3001');
+app.listen(process.env.PORT, function () {
+  console.log(`API listening on port ${process.env.PORT}`);
 });

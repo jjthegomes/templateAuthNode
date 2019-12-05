@@ -4,7 +4,7 @@ import mailer from '../../modules/mailer';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import Usuario from '../models/usuario';
-import * as FormValidator from "../../config/formValidator";
+import * as FormValidator from "../../helpers/formValidator";
 
 const router = express.Router();
 
@@ -19,17 +19,6 @@ router.post('/', async (req, res) => {
     return res.status(400).send({ error: "Error loading user" })
   }
 });
-
-router.get('/buscarUsuarioByEmail/:email', async (req, res) => {
-  try {
-    const usuario = await Usuario.findOne({ email: req.params.email });
-    return res.send({ usuario });
-
-  } catch (err) {
-    return res.status(400).send({ error: "Usuário não encontrado" })
-  }
-});
-
 
 router.put('/alterarSenha', async (req, res) => {
   try {
@@ -88,7 +77,7 @@ router.put('/alterarEmail', async (req, res) => {
 
     mailer.sendMail({
       to: usuario.email,
-      from: `"Template!" <${process.env.EMAIL_USER}>`,
+      from: `"Template" <${process.env.EMAIL_USER}>`,
       subject: "Alteração de Email",
       template: 'auth/troca_email',
       context: { nome: usuario.nome, novoEmail: email, emailAntigo: usuario.email, tokenRecuperacao, host: process.env.HOST },
@@ -99,7 +88,7 @@ router.put('/alterarEmail', async (req, res) => {
         setTimeout(function () {
           mailer.sendMail({
             to: email,
-            from: `"Template!" <${process.env.EMAIL_USER}>`,
+            from: `"Template" <${process.env.EMAIL_USER}>`,
             subject: "Alteração de Email",
             template: 'auth/troca_email_confirmacao',
             context: { nome: usuario.nome, novoEmail: email, tokenConfirmacao, host: process.env.HOST },
@@ -115,24 +104,8 @@ router.put('/alterarEmail', async (req, res) => {
 
   } catch (err) {
     console.log(err)
-    return res.status(400).send({ error: "Error updating password" })
+    return res.status(400).send({ error: "Error updating email" })
   }
 });
-
-// router.get('/ativarTodoMundo', async (req, res) => {
-//   try {
-//     const usuarios = await Usuario.find({});
-
-//     await Promise.all(usuarios.map(async usuario => {
-//       await Usuario.findOneAndUpdate({ email: usuario.email }, { ativo: true }, { new: true });
-//     }));
-//     console.log("foi")
-//     return res.sendStatus(200);
-
-//   } catch (err) {
-//     console.log(err)
-//     return res.status(400).send({ error: "Aluno não encontrado" })
-//   }
-// });
 
 module.exports = app => app.use('/api/usuario', router);

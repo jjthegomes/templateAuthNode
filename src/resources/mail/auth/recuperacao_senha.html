@@ -38,13 +38,13 @@
       max-width: 600px;
       width: 100%;
       background-color: rgb(255, 255, 255);
-      border-bottom: solid 3px #034772;
+      border-bottom: solid 3px #026aaf;
     }
 
     .div-header {
       text-align: center;
       padding: 15px 15px;
-      background-color: #034772;
+      background-color: #026aaf;
       color: white;
       font-weight: 300;
       margin-top: 15px;
@@ -56,16 +56,16 @@
       font-weight: 100;
     }
 
-    .botao-Template {
-      border: solid 1px #0984ce;
+    .botao {
       padding: 16px 28px;
-      font-size: 16px;
-      border-radius: 4px;
+      font-size: 1.2em;
+      border-radius: 5px;
       text-decoration: none;
-      color: #0984ce !important;
+      color: #FFF;
+      background: #026aaf;
     }
 
-    .botao-Template:hover {
+    .botao:hover {
       opacity: .8;
     }
 
@@ -88,24 +88,21 @@
     <div class="corpo">
       <div class="logo">
         <img src="{{host}}/Template-icon.png" alt="Logo do aplicativo Template" />
-        <h1 class="Template">Template!</h1>
+        <h1 class="Template">Template</h1>
       </div>
       <div class="div-header">
         <h2>Recuperação de Senha</h2>
       </div>
       <div class="div-corpo">
         <h2>Olá, {{nome}}</h2><br />
-        <h2 style="font-weight: 100">Recebemos uma solicitação para redefinir sua senha do <b>Template!</b></h2>
+        <h2 style="font-weight: 100">Recebemos uma solicitação para redefinir sua senha do <b>Template</b></h2>
         <br />
         <h3 style="font-weight: 100">Clique no link abaixo para redefinir sua senha:</h3>
         <br />
         <br />
-        <a class="botao-Template" href="{{host}}/recuperar-senha/{{token}}" target="_blank">
+        <a class="botao" href="{{host}}/recuperar-senha/{{token}}" target="_blank">
           Alterar Senha
         </a>
-        <br /><br /><br />
-        <p>Um abraço,</p>
-        <p style="margin-top: -15px">Equipe Template! 😉</p>
       </div>
     </div>
   </div>
